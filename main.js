@@ -37,7 +37,7 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 			document.getElementById("one_minute").play();
 		}
 		if ($scope.counter.toFixed(2) == 0) {
-			$timeout.cancel(mytimeout);
+			$scope.stop();
 			document.getElementById("warning").play();
 		}
 		else
@@ -63,6 +63,14 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 		var mytimeout = $timeout($scope.onTimeout,10);
 	}
 
+	$scope.stop = function() {
+		$scope.counter = 0;
+		$scope.hoursRemaining = 0;
+		$scope.minutesRemaining = 0;
+		$scope.secondsRemaining = 0;
+		$timeout.cancel(mytimeout);
+	}
+
 
 
 
@@ -73,12 +81,7 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 		$scope.message = "";
 		$scope.hoursWorked = 20;
 		$scope.granularity = 0;
-		
-		$scope.counter = 0;
-		$scope.hoursRemaining = 0;
-		$scope.minutesRemaining = 0;
-		$scope.secondsRemaining = 0;
-		$timeout.cancel(mytimeout);
+		$scope.stop();
 	}
 
 	$scope.calculate = function (clockInTime) {
