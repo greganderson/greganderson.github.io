@@ -1,0 +1,73 @@
+<html ng-app="clockOut">
+<head>
+	<title>Clock Out</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
+	<script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+	<script src="http://danielcrisp.github.io/angular-rangeslider/angular.rangeSlider.js"></script>
+	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+	<link href="http://danielcrisp.github.io/angular-rangeslider/angular.rangeSlider.css" rel="stylesheet">
+	<script type="text/javascript" src="main.js"></script>
+	<link rel ="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="body">
+<div ng-app="clockOut" class="container theme-showcase" role="main">
+<h1 class="jumbotron test">I should clock out at...</h1>
+
+	<div ng-controller="ClockCtrl" class="panel panel-body">
+
+		<!-- Time picker -->
+			<div class="panel panel-warning">
+					<h4 class="panel-heading">Time clocked in:</h4>
+					<div class="panel-body"><timepicker ng-model="mytime"></timepicker></div>
+			</div>
+
+		<!-- Sliders -->
+		<div class="panel panel-info">
+			<h4 class="panel panel-heading">Hours so far: {{hoursWorked + (granularity * .01)}}</h4>
+			<div class="panel panel-body">
+				<div range-slider min="0" max="39" model-min="0" model-max="hoursWorked" pin-handle="min" class="col-md-6"></div>
+			</div>
+			<div class="panel panel-body">
+				<div range-slider min="0" max="99" model-min="0" model-max="granularity" pin-handle="min" class="col-md-6"></div>
+			</div>
+		</div><br>
+
+		<!-- Display the clockout time -->
+		<h4 class="alert alert-info">You should clock out at: {{ display() }}</h4>
+
+		<!-- The timer -->
+		<div id="time" class="alert alert-danger">
+			<h3>Time remaining:</h3>
+			<h3>{{hoursRemaining}}:{{minutesRemaining}}:{{secondsRemaining}}</h3>
+
+		</div>
+
+		<!-- Start button -->
+		<button type="button" class="btn btn-lg btn-primary" ng-click="calculate(mytime);">START</button>
+		<button type="button" class="btn btn-lg btn-danger" ng-click="reset();">RESET</button>
+
+		<!-- Sounds ready to play -->
+		<div>
+			<audio id="five_minutes">
+				<source src="time_alert.mp3" type="audio/mp3">
+			</audio>
+			<audio id="one_minute">
+				<source src="time_alert.mp3" type="audio/mp3">
+			</audio>
+			<audio id="warning">
+				<source src="warning.mp3" type="audio/mp3">
+			</audio>
+		</div>
+	</div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+
+</body>
+</html>
