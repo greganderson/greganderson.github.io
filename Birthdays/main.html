@@ -1,0 +1,32 @@
+<div id="body">
+
+<input type="text" value="10" name="families">
+<script>   
+    var total = 10;
+    $("input[name='families']").TouchSpin({
+        min: 1,
+        max: 30,
+        step: 1
+    });
+
+    $("input[name='families']").on("change", function(data) {
+        var newTotal = $("input[name='families']").val();
+        if (newTotal < total) {
+            $('4').remove();
+            console.log('remove');
+        }
+        else {
+            $('names').append('<li id="4" class="list-group-item">wham</li>');
+            console.log('add');
+        }
+        total = newTotal;
+    });
+</script>
+
+<ul id="names" class="list-group">
+    <li class="list-group-item">one</li>
+    <li class="list-group-item">two</li>
+    <li class="list-group-item">three</li>
+</ul>
+
+</div>
