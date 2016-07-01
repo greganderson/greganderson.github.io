@@ -1,15 +1,15 @@
 <div id="body">
 
-<input type="text" value="10" name="families" ng-click="$ctrl.myfunc()">
-
 <form name="numInput">
     <label>Number of families:
-        <input type="number" name="input" ng-model="$ctrl.numFamilies" min="2" max="30" required>
+        <input type="number" name="input" ng-model="$ctrl.numFamilies" ng-change="$ctrl.blamo()" min="2" max="30" required>
     </label>
 </form>
 
-<ul id="names" class="list-group">
-    <li class="list-group-item" ng-repeat="n in $ctrl.range($ctrl.numFamilies)">one</li>
-</ul>
+<button ng-click="$ctrl.wham()">stuff</button>
+
+<div id="names" class="list-group">
+    <input type="text" class="list-group-item" ng-repeat="n in $ctrl.range($ctrl.numFamilies)" ng-model="ctrl.familyList>
+</div>
 
 </div>
